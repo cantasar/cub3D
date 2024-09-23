@@ -60,6 +60,7 @@ char	*fc_texture(char **liner, int arr_len)
 	int		i;
 	char	*rgb;
 	char	*tmp;
+	char	*joined;
 
 	i = -1;
 	rgb = NULL;
@@ -67,18 +68,20 @@ char	*fc_texture(char **liner, int arr_len)
 	check_num(liner);
 	while (++i < arr_len - 1)
 	{
-		if (rgb)
-			free(rgb);
 		if (rgb == NULL)
 			rgb = ft_strdup(liner[i + 1]);
 		else
-			rgb = ft_strjoin(tmp, liner[i + 1]);
+		{
+			joined = ft_strjoin(tmp, liner[i + 1]);
+			free(rgb);
+			rgb = joined;
+		}
 		tmp = rgb;
 	}
 	check_comp(rgb);
 	if (!rgb_check(rgb))
 	{
-		if_free(rgb);
+		free(rgb);
 		ft_error("RGB value is invalid!");
 	}
 	return (rgb);

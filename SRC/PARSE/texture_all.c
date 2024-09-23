@@ -19,10 +19,8 @@ int	true_texture(t_images *img)
 
 int	newliner(char **liner, int arr_len)
 {
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	if (arr_len == 3)
 	{
 		tmp = ft_strdup(liner[1]);
